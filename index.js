@@ -89,13 +89,14 @@ class Airplane {
     }
 
     fill(gallons){
-      this.tank + gallons;
+      this.tank += gallons;
     }
 
     drive(distance){
       this.odometer += distance;
       this.tank -= (distance/this.milesPerGallon);
       if (this.tank === 0){
+        this.odometer += 0;
         return `I ran out of fuel at ${this.odometer} miles!`;
       }
     }
@@ -142,16 +143,18 @@ class Airplane {
  class Instructor extends Lambdasian{
     constructor(attributes){
       super(attributes),
-      this.speciality = attributes.speciality,
+      this.specialty = attributes.specialty,
       this.favLanguage = attributes.favLanguage,
-      this.catchPhrase = attributes.catchPhrase,
+      this.catchPhrase = attributes.catchPhrase
     }
 
     demo(subject){
       return `Today we are learning about ${subject}`;
     }
 
-    grade(student, )
+    grade(subject){
+      return `${this.name} receives a perfect score on ${subject}`;
+    }
  }
   /*
     TASK 5
@@ -173,11 +176,20 @@ class Airplane {
        super(attributes),
        this.previousBackground = attributes.previousBackground,
        this.className = attributes.className,
-       this.favSubjects = attributes.favSubjects,
+       this.favSubjects = attributes.favSubjects
      }
 
      listSubjects(){
-       return ``
+       this.favSubjects.toString;
+       return `${this.favSubjects}`;
+     }
+
+     PRAssignment(subject){
+       return `${this.name} has submitted a PR for ${subject}`;
+     }
+
+     sprintChallenge(subject){
+       return `${this.name} has begun sprint challenge on ${subject}`;
      }
  }
   
@@ -194,8 +206,20 @@ class Airplane {
           + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
           + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
   */
- class ProjectManager {
-     
+ class ProjectManager extends Instructor{
+     constructor(attributes){
+       super(attributes);
+       this.gradClassName = attributes.gradClassName,
+       this.favInstructor = attributes.favInstructor
+     }
+
+     standUp(channel){
+       return `${this.name} announces to ${channel}, @channel standy times!`;
+     }
+
+     debugsCode(student, subject){
+       return `${this.name} debugs ${student.name}'s code on ${subject}`;
+     }
  }
   /*
     STRETCH PROBLEM (no tests!)
