@@ -93,11 +93,14 @@ class Airplane {
     }
 
     drive(distance){
-      this.odometer += distance;
-      this.tank -= (distance/this.milesPerGallon);
-      if (this.tank === 0){
-        this.odometer += 0;
-        return `I ran out of fuel at ${this.odometer} miles!`;
+      const driveableMiles = this.tank * this.milesPerGallon;
+      if (distance <= driveableMiles){
+        this.odometer += distance;
+        this.tank -= (distance/this.milesPerGallon);
+      } else {
+        this.odometer += driveableMiles;
+        this.tank = 0;
+        return `I ran out of fuel at ${this.odometer} miles!`
       }
     }
   }
@@ -152,8 +155,8 @@ class Airplane {
       return `Today we are learning about ${subject}`;
     }
 
-    grade(subject){
-      return `${this.name} receives a perfect score on ${subject}`;
+    grade(student, subject){
+      return `${student.name} receives a perfect score on ${subject}`;
     }
  }
   /*
